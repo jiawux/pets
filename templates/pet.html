@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang = "en">
+   <body>
+
+      <h1>Pets</h1>
+
+      <h3>
+         <a href = "{{ url_for('home_page') }}">Home Page</a>
+      </h3>
+
+       {% if error %}
+         <p class=error><strong>Error:</strong> {{ error }}
+       {% endif %}
+
+      <form action = "{{ request.path }}" method="post">
+         <label for = "pet_name">Name</label><br>
+         <input type = "text" name = "pet_name" placeholder = "Name" /><br>
+         <label for = "photoUrls">photoUrls</label><br>
+         <input type = "text" name = "photoUrls" placeholder = "photoUrls" /><br>
+         Status<br>
+         <select name="status">
+           <option value="available">available</option>
+           <option value="pending">pending</option>
+           <option value="sold">sold</option>
+         </select> <br>
+         Category<br>
+         <select name="category">
+           {% for category in categories %}
+           <option value={{category.category_name}}>{{category.category_name}}</option>
+           {% endfor %}
+         </select> <br>
+         <br>
+         <input type = "submit" value = "Submit" />
+      </form>
+
+   </body>
+</html>
